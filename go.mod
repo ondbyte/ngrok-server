@@ -1,4 +1,4 @@
-module github.com/ondbyte/ngro/ngrok-server
+module github.com/ondbyte/ngrok-server
 
 go 1.21
 
