@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	ngrok_server "github.com/ondbyte/ngro/ngrok-server"
+	ngrok_server "github.com/ondbyte/ngrok-server"
 )
 
 func TestNgrok(t *testing.T) {
