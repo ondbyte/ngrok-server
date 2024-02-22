@@ -23,9 +23,9 @@ type server struct {
 	listener _ngrok.Tunnel
 }
 
-// starts a server which has exposed itself to the internet at Server.Url(),
+// starts a server which has exposed itself to the internet at Server.Url()which is equal to domain,
 // pass the ngrok token and ngrok domain
-func New(ctx context.Context, authToken, domain string) (Server, error) {
+func NewWithDomain(ctx context.Context, authToken, domain string) (Server, error) {
 	listener, err := _ngrok.Listen(ctx,
 		config.HTTPEndpoint(config.WithDomain(domain)),
 		_ngrok.WithAuthtoken(authToken),
@@ -38,6 +38,12 @@ func New(ctx context.Context, authToken, domain string) (Server, error) {
 		listener: listener,
 	}
 	return s, nil
+}
+
+// starts a server which has exposed itself to the internet at Server.Url(),
+// pass the ngrok token
+func NewWithRandomDomain(ctx context.Context, authToken string) (Server, error) {
+	return NewWithDomain(ctx, authToken, "")
 }
 
 func (s *server) Url() (remote string) {

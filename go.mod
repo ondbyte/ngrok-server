@@ -1,6 +1,8 @@
 module github.com/ondbyte/ngro/ngrok-server
 
-go 1.20
+go 1.21
+
+toolchain go1.21.7
 
 require golang.ngrok.com/ngrok v1.8.1
 

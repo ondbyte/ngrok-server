@@ -1,21 +1,20 @@
-package ngrok_server_test
+## a simple wrapper for ngrok
 
-import (
-	"context"
-	"net/http"
-	"testing"
-	"time"
+this has a single responsibility
+take a http handler and a addr and serve the handler locally at the addr and expose the locally served handler at a url to the internet
 
-	ngrok_server "github.com/ondbyte/ngro/ngrok-server"
-)
+### PS: you can use `"golang.ngrok.com/ngrok"` directly to have more control
+
+#### example:
+```go
 
 func TestNgrok(t *testing.T) {
 	authToken := "<auth-token>"
-	domain := "square-yakooza-random.ngrok-free.app"
+	domain := "your-ngrok-domain.ngrok-free.app"
 	ctx, _ := context.WithTimeout(context.TODO(), time.Second*15)
 	s, err := ngrok_server.NewWithDomain(ctx, authToken, domain)
 	// you can use
-	// s, err := ngrok_server.NewWithRandomDomain(ctx, authToken, domain)
+	// s, err := ngrok_server.NewWithRandomDomain(ctx, authToken)
 	// for randomely generated url
 	if err != nil {
 		t.Fatal(err)
@@ -39,3 +38,4 @@ func TestNgrok(t *testing.T) {
 	}
 
 }
+```
